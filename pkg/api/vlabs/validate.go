@@ -28,6 +28,7 @@ func (o *OrchestratorProfile) Validate() error {
 
 	case Kubernetes:
 		switch o.OrchestratorVersion {
+		case Kubernetes164:
 		case Kubernetes162:
 		case Kubernetes160:
 		case Kubernetes157:

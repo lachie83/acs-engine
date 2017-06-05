@@ -12,32 +12,32 @@ import (
 )
 
 // Compiler to verify QueueMessageProcessor implements OperationsProcessor
-var _ UpgradeWorkFlow = &Kubernetes162upgrader{}
+var _ UpgradeWorkFlow = &Kubernetes164upgrader{}
 
-// Kubernetes162upgrader upgrades a Kubernetes 1.5.3 cluster to 1.6.2
-type Kubernetes162upgrader struct {
+// Kubernetes164upgrader upgrades a Kubernetes 1.5.3 cluster to 1.6.4
+type Kubernetes164upgrader struct {
 	ClusterTopology
 	Client armhelpers.ACSEngineClient
 }
 
 // ClusterPreflightCheck does preflight check
-func (ku *Kubernetes162upgrader) ClusterPreflightCheck() error {
+func (ku *Kubernetes164upgrader) ClusterPreflightCheck() error {
 	// Check that current cluster is 1.5.3
 	if ku.DataModel.Properties.OrchestratorProfile.OrchestratorVersion != api.Kubernetes153 {
-		return fmt.Errorf("Upgrade to Kubernetes 1.6.2 is not supported from version: %s", ku.DataModel.Properties.OrchestratorProfile.OrchestratorVersion)
+		return fmt.Errorf("Upgrade to Kubernetes 1.6.4 is not supported from version: %s", ku.DataModel.Properties.OrchestratorProfile.OrchestratorVersion)
 	}
 
 	return nil
 }
 
 // RunUpgrade runs the upgrade pipeline
-func (ku *Kubernetes162upgrader) RunUpgrade() error {
+func (ku *Kubernetes164upgrader) RunUpgrade() error {
 	if err := ku.ClusterPreflightCheck(); err != nil {
 		return err
 	}
 
 	upgradeContainerService := ku.ClusterTopology.DataModel
-	upgradeContainerService.Properties.OrchestratorProfile.OrchestratorVersion = api.Kubernetes162
+	upgradeContainerService.Properties.OrchestratorProfile.OrchestratorVersion = api.Kubernetes164
 
 	templateGenerator, err := acsengine.InitializeTemplateGenerator(false)
 	if err != nil {
@@ -86,6 +86,6 @@ func (ku *Kubernetes162upgrader) RunUpgrade() error {
 }
 
 // Validate will run validation post upgrade
-func (ku *Kubernetes162upgrader) Validate() error {
+func (ku *Kubernetes164upgrader) Validate() error {
 	return nil
 }

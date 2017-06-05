@@ -22,6 +22,8 @@ func convertVLabsUpgradeOrchestratorProfile(vlabscs *vlabs.OrchestratorProfile, 
 	api.OrchestratorType = OrchestratorType(vlabscs.OrchestratorType)
 	if api.OrchestratorType == Kubernetes {
 		switch vlabscs.OrchestratorVersion {
+		case vlabs.Kubernetes164:
+			api.OrchestratorVersion = Kubernetes164
 		case vlabs.Kubernetes162:
 			api.OrchestratorVersion = Kubernetes162
 		case vlabs.Kubernetes160:

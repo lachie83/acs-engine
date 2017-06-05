@@ -7,18 +7,18 @@
     "masterProfile": {
       "count": 1,
       "dnsPrefix": "",
-        "vmSize": "Standard_D2_v2"
+        "vmSize": "Standard_DS2_v2"
     },
     "agentPoolProfiles": [
       {
         "name": "agent",
-        "count": 3,
-        "vmSize": "Standard_D2_v2",
+        "count": 6,
+        "vmSize": "Standard_DS2_v2",
         "availabilityProfile": "AvailabilitySet"
       }
     ],
     "linuxProfile": {
-      "adminUsername": "azureuser",
+      "adminUsername": "laevenso",
       "ssh": {
         "publicKeys": [
           {
